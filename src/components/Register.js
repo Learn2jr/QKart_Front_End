@@ -88,7 +88,9 @@ const Register = () => {
 
           <p className="secondary-action">            
             Already have an account?{" "}
-            <Link className="link" to="/login">Login here</Link>          
+            <Link className="link" to="/login">
+              Login here
+            </Link>          
             </p>        
             </Stack>      
           </Box>      
