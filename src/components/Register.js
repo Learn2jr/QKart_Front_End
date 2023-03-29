@@ -12,17 +12,17 @@ const Register = () => {
   const history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
   // TODO: CRIO_TASK_MODULE_REGISTER - Implement the register function  /**   * Definition for register handler   * - Function to be called when the user clicks on the register button or submits the register form   *   * @param {{ username: string, password: string, confirmPassword: string }} formData   *  Object with values of username, password and confirm password user entered to register   *   * API endpoint - "POST /auth/register"   *   * Example for successful response from backend for the API call:   * HTTP 201   * {   *      "success": true,   * }   *   * Example for failed response from backend for the API call:   * HTTP 400   * {   *      "success": false,   *      "message": "Username is already taken"   * }   */  // Decalring use State Variables  
-  const [formData, setFormData] = useState({username: "", password: "", confirmPassword: ""})
+  const [formData, setFormData] = useState({username: "", password: "", confirmPassword: ""});
   const [isLoading, setIsLoading] = useState(false);
   const handleInputChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
     setFormData({...formData, [name]:value});
-    console.log(formData)
-  }
+    //console.log(formData)
+  };
   const register = async (formData) => {
+    setIsLoading(true);
     if(validateInput(formData)){
-      setIsLoading(true);
       try{
         await axios.post(`${config.endpoint}/auth/register`,{username:formData.username, password:formData.password}).then((resp)=>{
           if(resp.data.success){

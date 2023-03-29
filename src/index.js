@@ -18,7 +18,7 @@ ReactDOM.render(
             horizontal: "center",
           }}
           preventDuplicate
-        >
+        >  
           <App />
         </SnackbarProvider>
         </ThemeProvider> 

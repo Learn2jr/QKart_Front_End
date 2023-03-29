@@ -8,12 +8,14 @@ import { useHistory, Link } from "react-router-dom";
 
 const Header = ({ children, hasHiddenAuthButtons }) => {
     const history = useHistory(); 
-    const [log, setLog] = useState(children); 
-    console.log(log);
+    const [log, setLog] = useState(localStorage.getItem("username")); 
+    //console.log(log);
     return (
       <Box className="header">
         <Box className="header-title">
+          <Link to="/">
             <img src="logo_light.svg" alt="QKart-icon"></img>
+            </Link>
         </Box>
         {hasHiddenAuthButtons ? (
           <Button
@@ -27,8 +29,10 @@ const Header = ({ children, hasHiddenAuthButtons }) => {
             Back to explore
           </Button>
         ) : (
+          <>          <Box width="30vw" justifyContent='center'>{children}</Box>
       <Box>
       {log ? ( 
+        <>
         <Stack direction="row" spacing={2} alignItems="center">
         <Avatar alt={localStorage.getItem("username")} src="avatar.png" /> 
         <p className="title">{localStorage.getItem("username")}</p>
@@ -45,7 +49,7 @@ const Header = ({ children, hasHiddenAuthButtons }) => {
         >
           LOGOUT
         </Button>
-        </Stack>
+        </Stack>   </>
       ):(
         <Stack direction="row" spacing={2} alignItems="center">
         <Button 
@@ -69,7 +73,7 @@ const Header = ({ children, hasHiddenAuthButtons }) => {
           </Stack>
       )}
     </Box>
-        )}
+      </>  )}
     </Box>
     );
 };
